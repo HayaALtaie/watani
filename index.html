@@ -23,7 +23,7 @@
         <!-- <span>|</span> -->
         <!-- <img  src="./images/earthlink-logo.png" alt="الوطني من ايرثلنك"> -->
       </div>
-      <button id="lang-toggle" style="opacity: 0;">
+      <button id="lang-toggle">
         <!-- <span data-key="lang-toggle-text">English</span> -->
       </button>
     </div>
@@ -92,9 +92,9 @@
           </div>
           <div class="form-control">
             <label>ما هو مزود الانترنت الحالي لديك؟<span class="required">*</span></label>
-            <div class="radio-group">
+            <div class="radio-group" id="goup1">
                 <input type="radio" id="wireless" name="internet-provider" value="wireless">
-                <br><label for="wireless">خدمة وايرلس</label>
+                <label for="wireless">خدمة وايرلس</label>
             </div>
             <div class="radio-group">
                 <input type="radio" id="fiber" name="internet-provider" value="fiber">
@@ -115,7 +115,7 @@
 
 
     
-    <div class="success-section" id="success-section">
+    <div class="success-section display-none visibility-hidden" id="success-section">
       <div class="header2" id="section-1">
 
         <button id="theme-toggle">

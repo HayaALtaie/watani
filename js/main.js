@@ -74,8 +74,8 @@ function showError(inputElement, message) {
     let errorElement = document.createElement("div");
     errorElement.className = "error-message";
     errorElement.style.color = "red";
-    errorElement.style.marginBottom = "10px";
-    errorElement.style.fontSize = "14px";
+    errorElement.style.marginBottom = "15px";
+    errorElement.style.fontSize = "12px";
     errorElement.style.display = "block";
     errorElement.style.textAlign = "right";
     errorElement.innerText = message;
@@ -108,7 +108,7 @@ function clearError(inputElement) {
 nameInput.addEventListener("keyup", (e) => {
     formSuccessMessage.innerText = "";
     if (!validateName(nameInput.value)) {
-        showError(nameInput, "الاسم مطلوب");
+        showError(nameInput, "الاسم مطلوب*");
     } else {
         clearError(nameInput);
     }
@@ -117,7 +117,7 @@ nameInput.addEventListener("keyup", (e) => {
 phoneInput.addEventListener("keyup", () => {
     formSuccessMessage.innerText = "";
     if (!validatePhone(phoneInput.value)) {
-        showError(phoneInput, "يجب ادخال رقم هاتف صحيح");
+        showError(phoneInput, "يجب ادخال رقم هاتف صحيح*");
     } else {
         clearError(phoneInput);
     }
@@ -126,7 +126,7 @@ phoneInput.addEventListener("keyup", () => {
 emailInput.addEventListener("keyup", () => {
     formSuccessMessage.innerText = "";
     if (!validateEmail(emailInput.value)) {
-        showError(emailInput, "يجب ادخال بريد الكتروني صحيح");
+        showError(emailInput, "يجب ادخال بريد الكتروني صحيح*");
     } else {
         clearError(emailInput);
     }
@@ -135,7 +135,7 @@ emailInput.addEventListener("keyup", () => {
 provinceInput.addEventListener("change", () => {
     formSuccessMessage.innerText = "";
     if (!validateProvince(provinceInput.value)) {
-        showError(provinceInput, "يجب اختيار محافظة");
+        showError(provinceInput, "يجب اختيار محافظة*");
     } else {
         clearError(provinceInput);
     }
@@ -145,7 +145,7 @@ internetProviderRadios.forEach(radio => {
     radio.addEventListener('change', () => {
         formSuccessMessage.innerText = "";
         if (!validateInternetProvider()) {
-            showError(radio, "يجب اختيار مزود الإنترنت");
+            showError(radio, "يجب اختيار مزود الإنترنت*");
         } else {
             clearError(radio);
         }
@@ -156,7 +156,7 @@ internetProviderRadios.forEach(radio => {
 fiberCompanyInput.addEventListener("keyup", () => {
     formSuccessMessage.innerText = "";
     if (!validateFiberCompany(fiberCompanyInput.value)) {
-        showError(fiberCompanyInput, "يجب إدخال اسم الشركة");
+        showError(fiberCompanyInput, "يجب إدخال اسم الشركة*");
     } else {
         clearError(fiberCompanyInput);
     }
