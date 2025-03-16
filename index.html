@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="./css/helpers.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="al-watani icon" href="./images/watani.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>الوطني من ايرثلنك</title>
+</head>
+<body>
+  
+
+    <div class="header" id="section-1">
+
+      <button id="theme-toggle">
+        <!-- <i id="theme-icon" class="fa fa-moon-o"></i> -->
+      </button>
+      <div class="logo">
+        <img  src="./images/main-logo.png" alt="الوطني من ايرثلنك">
+        <!-- <span>|</span> -->
+        <!-- <img  src="./images/earthlink-logo.png" alt="الوطني من ايرثلنك"> -->
+      </div>
+      <button id="lang-toggle" style="opacity: 0;">
+        <!-- <span data-key="lang-toggle-text">English</span> -->
+      </button>
+    </div>
+
+
+
+  <div class="section-wrapper " id="section-2">
+    <div class="image-box ">
+      <div class="text-box ">
+        <h1>تريد أنترنت مستقر ؟</h1>
+        <h2>احصل على انترنت من الشبكة <br> الاكبر في العراق
+          مع خصومات <br> ومميزات حصرية</h2>
+        <p>خليك واحد من عائلتنا .. خليك وطني</p>
+        <button class="primary-button" id="register-2" data-section="2" data-key="register-button"></button>
+
+      </div>
+    </div>
+   
+  </div>
+
+    <div class="main-container display-none visibility-hidden" id="form-section">
+      <!-- <div class="title">
+        <h1 class="sans-family" data-key="register-form-title">استمارة التسجيل</h1>
+        <p data-key="register-form-text" class="sans-family">المعلومات الاساسية المطلوبة</p>
+      </div> -->
+      <div class="register-container">
+        <div class="form-container">
+          <form class="form" id="form">
+            <input type="hidden" id="section-id" name="section-id" value="">
+            <div class="success-message display-none visibility-hidden" id="form-success-message" data-key="success-message"></div>
+            <div class="form-control">
+              <label for="name" data-key="label-name"></label>
+              <input type="text" id="name">
+            </div>
+            <div class="form-control">
+              <label for="phone" data-key="label-phone"></label>
+              <input type="tel" id="phone">
+            </div>
+            <div class="form-control">
+              <label for="email" data-key="label-email"></label>
+              <input type="email" id="email">
+            </div>
+            <div class="form-control">
+              <label for="province" data-key="label-province">المحافظة</label>
+              <select name="province" id="province">
+                <option value="" data-key="choose-province">اختر محافظة</option>
+                <option value="9fc7a47c-66b1-449a-b908-825cad04ee07" data-key="province-anbar">الأنبار</option>
+                <option value="280b0d49-ea60-4d3c-8e44-97a45b4e30f9" data-key="province-erbil">أربيل</option>
+                <option value="a56de306-acf8-49e8-a9b0-5663a436c9dd" data-key="province-babil">بابل</option>
+                <option value="df7bf63b-7630-4c94-9d07-cdeb7e212dae" data-key="province-baghdad">بغداد</option>
+                <option value="89ea59e9-ede2-4197-9cce-67afd8d1beb3" data-key="province-basra">البصرة</option>
+                <option value="cae2c0dd-8a10-4406-b200-c00dc38a8aff" data-key="province-diyala">ديالى</option>
+                <option value="57dea71e-da76-416a-9b8b-e827031c1db8" data-key="province-dhok">دهوك</option>
+                <option value="3634a726-0268-44ba-bfbd-e100299cb16b" data-key="province-karbala">كربلاء</option>
+                <option value="b914ca2e-a6b0-4f1f-b8f5-905a975d3ff1" data-key="province-maysan">ميسان</option>
+                <option value="b19a212b-f4ba-4dfc-9eea-a15b249cd209" data-key="province-muthanna">المثنى</option>
+                <option value="c60dd09f-c466-487c-a970-7ead1a57adbb" data-key="province-najaf">النجف</option>
+                <option value="35086096-c1d6-4383-bc7b-845f196cbab8" data-key="province-nineveh">نينوى</option>
+                <option value="270c997f-33b5-4187-a8d9-d79ac7af0867" data-key="province-qadissiya">القادسية</option>
+                <option value="349acd4a-512b-4aed-877e-0bed2ab94bef" data-key="province-salahuddin">صلاح الدين</option>
+                <option value="ee0ea531-f0e5-45ad-b518-e1aea9169eed" data-key="province-sulaymaniyah">السليمانية</option>
+                <option value="e37e0df6-2f48-4b57-9320-db5a29e42b32" data-key="province-kirkuk">كركوك</option>
+                <option value="b1d41034-0d35-47e2-a6f9-dcd446b464f0" data-key="province-thiqar">ذي قار</option>
+                <option value="89ea59e9-ede2-4197-9cce-67afd8d1beb3" data-key="province-wasit">واسط</option>
+            </select>
+          </div>
+          <div class="form-control">
+            <label>ما هو مزود الانترنت الحالي لديك؟<span class="required">*</span></label>
+            <div class="radio-group">
+                <input type="radio" id="wireless" name="internet-provider" value="wireless">
+                <br><label for="wireless">خدمة وايرلس</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="fiber" name="internet-provider" value="fiber">
+                <label for="fiber">خدمة الكابل الضوئي في شركة:</label>
+            </div>
+            <div id="fiber-company-container" style="display: block;">
+              <input type="text" id="fiber-company" name="fiber-company" placeholder="اسم الشركة" style="display: none;">
+          </div>
+        </div>
+            <button class="primary-button" id="submit" data-key="button-register"></button>
+          </form>
+        </div>
+        <div class="illustrate">
+          <img src="images/form-logo.png" alt="" >
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="success-section" id="success-section">
+      <div class="header2" id="section-1">
+
+        <button id="theme-toggle">
+          <!-- <i id="theme-icon" class="fa fa-moon-o visibility-hidden"></i> -->
+        </button>
+        <div class="logo2">
+          <img  src="./images/third-section-img.png" alt="الوطني من ايرثلنك">
+        </div>
+        <button id="lang-toggle2" style="opacity: 0;">
+          <!-- <span data-key="lang-toggle-text">English</span> -->
+        </button>
+      </div>
+  
+    <div class="section-wrapper2" id="section-2">
+      <div class="image-box2 ">
+        <div class="text-box2 ">
+          <h1 class="dotted-border">لأنك مميز .. أختاريت صح</h1>
+          <h2>تم استلام طلبك و سوف يتم الاتصال بك من <br>مركز خدمة الزبائن <span class="green-text">6119</span> بأقرب وقت</h2>
+          <div class="line"><hr ></div>
+          <p>شكرا لأختياركم الوطني للانترنت</p>
+          <a class="home-link" href="/">العودة الى الصفحة الرئيسية</a>
+          
+        </div>
+      </div>
+     
+    </div>
+  </div>
+
+
+  <button id="scroll-up">
+    <i class="fa fa-arrow-up"></i> 
+  </button>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./js/environment.js"></script>
+  <script src="./js/translations.js" type="module"></script>
+  <script src="./js/main.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+/* helpers.css */
+
+:root {
+  --main-color: #065ce5;
+  --soft-blue-color: #7faaef;
+  --secondary-color: #02c597;
+  --grey-color: #546378;
+  --white-color: white;
+  --Light-Ghost-white: #f7f7f8;
+  --section-bg: #dddde2;
+  /* --section-dark :#2f425d63; */
+
+  --bg-color: white;  
+  --text-color: #333; 
+  --text-color2: #ffffff; 
+  --primary-color: #065ce5; 
+  --secondary-color: #02c597; 
+  --input-color : white;
+
+  
+}
+
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  src: url("/assets/fonts/NotoSansArabic-VariableFont_wdth\,wght.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.required {
+  color: red; 
+}
+
+.sans-family{
+  font-family: sans-serif;
+}
+
+.bord{
+  border: 2px red solid;
+}
+
+/* .fa , #lang-toggle{
+  opacity: 0;
+} */
+
+.section-bg{
+  background-color: var(--section-bg);
+}
+
+.blue-text {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.green-text {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.visibility-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ========================================================================== */
+/* ANIMATIONS */
+/* ========================================================================== */
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeftIn {
+  from {
+    transform: translateX(10%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes SlideLeftOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateX(-10%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
