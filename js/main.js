@@ -75,7 +75,8 @@ function showError(inputElement, message) {
     errorElement.className = "error-message";
     errorElement.style.color = "red";
     errorElement.style.marginBottom = "15px";
-    errorElement.style.fontSize = "12px";
+    errorElement.style.marginTop = "4px";
+    errorElement.style.fontSize = "14px";
     errorElement.style.display = "block";
     errorElement.style.textAlign = "right";
     errorElement.innerText = message;
