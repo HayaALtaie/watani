@@ -32,14 +32,46 @@ body.dark-mode {
 }
 
 @supports (display: flex) and (-webkit-touch-callout: none) {
-    @media screen and (device-aspect-ratio: 40/89) {
-        body {
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
-        }
-    }
+  @media screen and (device-aspect-ratio: 40/89) {
+      .section-wrapper {
+          padding-top: env(safe-area-inset-top);
+          padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .section-wrapper .image-box {
+          padding-inline-start: 5%; 
+      }
+
+      .section-wrapper .text-box {
+          width: 90%; 
+          text-align: center;
+          margin: 0 auto; 
+      }
+
+      .section-wrapper .text-box h1 {
+          width: 90%; 
+          font-size: 30px; 
+          margin: 20px auto;
+      }
+
+      .section-wrapper .text-box h2 {
+          font-size: 25px; 
+          line-height: 40px; 
+      }
+
+      .section-wrapper .text-box p {
+          font-size: 20px; 
+      }
+
+      .header {
+        width:100%;
+      }
+
+      .logo {
+        width: 50%; 
+      }
+
+  }
 }
 
 
