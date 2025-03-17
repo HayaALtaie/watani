@@ -7,8 +7,13 @@ const phoneInput = document.getElementById("phone");
 
 const emailInput = document.getElementById("email");
 const provinceInput = document.getElementById("province");
-const internetProviderRadios = document.querySelectorAll('input[name="internet-provider"]');
-const fiberCompanyInput = document.getElementById("fiber-company");
+
+// const internetProviderRadios = document.querySelectorAll('input[name="internet-provider"]');
+// const fiberCompanyInput = document.getElementById("fiber-company");
+
+const informationSourceRadios = document.querySelectorAll('input[name="informationSource"]');
+const currentInternetProviderInput = document.getElementById("currentInternetProvider");
+
 const formSuccessMessage = document.getElementById("form-success-message");
 const formSection = document.querySelector('.main-container'); 
 
@@ -33,15 +38,26 @@ function validateProvince(province) {
     return province !== "";
 }
 
-function validateInternetProvider() {
-    return document.querySelector('input[name="internet-provider"]:checked') !== null;
+// function validateInternetProvider() {
+//     return document.querySelector('input[name="internet-provider"]:checked') !== null;
+// }
+
+// function validateFiberCompany(company) {
+//     if (document.getElementById('fiber').checked) {
+//         return company.trim() !== "";
+//     }
+//     return true; 
+// }
+
+function validateInformationSource() {
+    return document.querySelector('input[name="informationSource"]:checked') !== null;
 }
 
-function validateFiberCompany(company) {
+function validateCurrentInternetProvider(company) {
     if (document.getElementById('fiber').checked) {
         return company.trim() !== "";
     }
-    return true; 
+    return true;
 }
 
 function updateButtonState() {
@@ -49,10 +65,14 @@ function updateButtonState() {
     const isPhoneValid = validatePhone(phoneInput.value);
     const isEmailValid = validateEmail(emailInput.value);
     const isProvinceValid = validateProvince(provinceInput.value);
-    const isInternetProviderValid = validateInternetProvider();
-    const isFiberCompanyValid = validateFiberCompany(fiberCompanyInput.value);
 
-    if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInternetProviderValid && isFiberCompanyValid) {
+    const isInformationSourceValid = validateInformationSource();
+    const isCurrentInternetProviderValid = validateCurrentInternetProvider(currentInternetProviderInput.value);
+
+    // const isInternetProviderValid = validateInternetProvider();
+    // const isFiberCompanyValid = validateFiberCompany(fiberCompanyInput.value);
+
+    if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInformationSourceValid && isCurrentInternetProviderValid ) {
         submitButton.disabled = false;
         submitButton.style.cursor = "pointer";
     } else {
@@ -65,10 +85,10 @@ nameInput.addEventListener("input", updateButtonState);
 phoneInput.addEventListener("input", updateButtonState);
 emailInput.addEventListener("input", updateButtonState);
 provinceInput.addEventListener("input", updateButtonState);
-internetProviderRadios.forEach(radio => {
+informationSourceRadios.forEach(radio => {
     radio.addEventListener('change', updateButtonState); 
 });
-fiberCompanyInput.addEventListener("input", updateButtonState);
+currentInternetProviderInput.addEventListener("input", updateButtonState);
 
 function showError(inputElement, message) {
     let errorElement = document.createElement("div");
@@ -142,10 +162,10 @@ provinceInput.addEventListener("change", () => {
     }
 });
 
-internetProviderRadios.forEach(radio => {
+informationSourceRadios.forEach(radio => {
     radio.addEventListener('change', () => {
         formSuccessMessage.innerText = "";
-        if (!validateInternetProvider()) {
+        if (!validateInformationSource()) {
             showError(radio, "يجب اختيار مزود الإنترنت*");
         } else {
             clearError(radio);
@@ -154,15 +174,38 @@ internetProviderRadios.forEach(radio => {
     });
 });
 
-fiberCompanyInput.addEventListener("keyup", () => {
+// informationSourceRadios.forEach(radio => {
+//     radio.addEventListener('change', () => {
+//         formSuccessMessage.innerText = "";
+//         if (!validateInternetProvider()) {
+//             showError(radio, "يجب اختيار مزود الإنترنت*");
+//         } else {
+//             clearError(radio);
+//         }
+//         updateButtonState();
+//     });
+// });
+
+// fiberCompanyInput.addEventListener("keyup", () => {
+//     formSuccessMessage.innerText = "";
+//     if (!validateFiberCompany(fiberCompanyInput.value)) {
+//         showError(fiberCompanyInput, "يجب إدخال اسم الشركة*");
+//     } else {
+//         clearError(fiberCompanyInput);
+//     }
+//     updateButtonState();
+// });
+
+currentInternetProviderInput.addEventListener("keyup", () => {
     formSuccessMessage.innerText = "";
-    if (!validateFiberCompany(fiberCompanyInput.value)) {
-        showError(fiberCompanyInput, "يجب إدخال اسم الشركة*");
+    if (!validateCurrentInternetProvider(currentInternetProviderInput.value)) {
+        showError(currentInternetProviderInput, "يجب إدخال اسم الشركة*");
     } else {
-        clearError(fiberCompanyInput);
+        clearError(currentInternetProviderInput);
     }
     updateButtonState();
 });
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const registerButtons = document.querySelectorAll('button[id^="register-"]');
@@ -236,8 +279,11 @@ submitButton.addEventListener("click", (e) => {
     const isPhoneValid = validatePhone(phoneInput.value);
     const isEmailValid = validateEmail(emailInput.value);
     const isProvinceValid = validateProvince(provinceInput.value);
-    const isInternetProviderValid = validateInternetProvider();
-    const isFiberCompanyValid = validateFiberCompany(fiberCompanyInput.value);
+    // const isInternetProviderValid = validateInternetProvider();
+    // const isFiberCompanyValid = validateFiberCompany(fiberCompanyInput.value);
+
+    const isInformationSourceValid = validateInformationSource();
+    const isCurrentInternetProviderValid = validateCurrentInternetProvider(currentInternetProviderInput.value);
 
     if (!isNameValid) {
         showError(nameInput,  translations[isArabic ? 'ar' : 'en']['error-name-required']);
@@ -252,14 +298,14 @@ submitButton.addEventListener("click", (e) => {
     if (!isProvinceValid) {
         showError(provinceInput,  translations[isArabic ? 'ar' : 'en']['error-province-required']);
     }
-    if (!isInternetProviderValid) {
+    if (!isInformationSourceValid) {
         showError(internetProviderRadios[0], translations[isArabic ? 'ar' : 'en']['error-provider-required']); 
     }
-    if (!isFiberCompanyValid) {
+    if (!isCurrentInternetProviderValid) {
         showError(fiberCompanyInput, translations[isArabic ? 'ar' : 'en']['error-company-required']);
     }
 
-    if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInternetProviderValid && isFiberCompanyValid){
+    if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInformationSourceValid && isCurrentInternetProviderValid){
         sendHttpRequest();
     } 
 });
@@ -281,11 +327,11 @@ function showSuccessMessage() {
         emailInput.value = "";
         provinceInput.value = ""; 
 
-        internetProviderRadios.forEach(radio => {
+        informationSourceRadios.forEach(radio => {
             radio.checked = false;
         });
 
-        fiberCompanyInput.value = ""; 
+        currentInternetProviderInput.value = ""; 
 
 
 
@@ -313,15 +359,15 @@ function showErrorMessage(errorMessage = "حصل خطأ ما، يرجى المح
 
 function sendHttpRequest() {
 
-    const internetProvider = document.querySelector('input[name="internet-provider"]:checked')?.value || "";
+    const informationSource = document.querySelector('input[name="informationSource"]:checked')?.value || "";
 
     const payload = {
         fullName: nameInput.value,
         phoneNumber: phoneInput.value,
-        currentInternetProvider: internetProvider,
+        informationSource: informationSource,
         email: emailInput.value,
         governance: provinceInput.value,
-        notes: fiberCompanyInput.value };
+        currentInternetProvider: currentInternetProviderInput.value };
 
     formSuccessMessage.innerText = "";
     fetch(`${baseUrl}/requests/service-availability`, {
@@ -426,15 +472,15 @@ themeToggle.addEventListener("click", () => {
 document.getElementById('fiber').addEventListener('change', function() {
     const fiberCompanyInput = document.getElementById('fiber-company');
     if (this.checked) {
-        fiberCompanyInput.style.display = 'block';
+        currentInternetProviderInput.style.display = 'block';
     } else {
-        fiberCompanyInput.style.display = 'none';
+        currentInternetProviderInput.style.display = 'none';
     }
 });
 
 
 document.getElementById('wireless').addEventListener('change', function() {
     if (this.checked) {
-        document.getElementById('fiber-company').style.display = 'none';
+        document.getElementById('currentInternetProvider').style.display = 'none';
     }
 });

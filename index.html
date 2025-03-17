@@ -93,15 +93,21 @@
           <div class="form-control">
             <label>ما هو مزود الانترنت الحالي لديك؟<span class="required">*</span></label>
             <div class="radio-group" id="goup1">
-                <input type="radio" id="wireless" name="internet-provider" value="wireless">
+                <!-- <input type="radio" id="wireless" name="internet-provider" value="wireless"> -->
+                <input type="radio" id="wireless" name="informationSource" value="d9172bc8-3eeb-4977-9bca-172d2a4e438f">
+
                 <label for="wireless">خدمة وايرلس</label>
             </div>
             <div class="radio-group">
-                <input type="radio" id="fiber" name="internet-provider" value="fiber">
+                <!-- <input type="radio" id="fiber" name="internet-provider" value="fiber"> -->
+                <input type="radio" id="fiber" name="informationSource" value="22160bc9-c68c-403a-a2f0-464b809132ae">
+
                 <label for="fiber">خدمة الكابل الضوئي في شركة:</label>
             </div>
             <div id="fiber-company-container" style="display: block;">
-              <input type="text" id="fiber-company" name="fiber-company" placeholder="اسم الشركة" style="display: none;">
+              <!-- <input type="text" id="fiber-company" name="fiber-company" placeholder="اسم الشركة" style="display: none;"> -->
+              <input type="text" id="currentInternetProvider" name="currentInternetProvider" placeholder="اسم الشركة" style="display: none;">
+
           </div>
         </div>
             <button class="primary-button" id="submit" data-key="button-register"></button>
