@@ -299,10 +299,10 @@ submitButton.addEventListener("click", (e) => {
         showError(provinceInput,  translations[isArabic ? 'ar' : 'en']['error-province-required']);
     }
     if (!isInformationSourceValid) {
-        showError(internetProviderRadios[0], translations[isArabic ? 'ar' : 'en']['error-provider-required']); 
+        showError(informationSourceRadios[0], translations[isArabic ? 'ar' : 'en']['error-provider-required']); 
     }
     if (!isCurrentInternetProviderValid) {
-        showError(fiberCompanyInput, translations[isArabic ? 'ar' : 'en']['error-company-required']);
+        showError(currentInternetProviderInput, translations[isArabic ? 'ar' : 'en']['error-company-required']);
     }
 
     if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInformationSourceValid && isCurrentInternetProviderValid){
