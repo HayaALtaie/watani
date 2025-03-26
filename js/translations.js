@@ -3,7 +3,7 @@ export const translations = {
     ar: {
         "label-name": "الاسم الرباعي واللقب <span class='required'>*</span>",
         "label-phone": "رقم الهاتف <span class='required'>*</span>",
-        "label-email": "البريد الالكتروني <span class='required'>*</span>",
+        "label-email": "البريد الالكتروني",
         "button-send": "ارسال",
         "label-province" : "المحافظة <span class='required'>*</span>",
         "choose-province": "اختر محافظة",
@@ -43,7 +43,7 @@ export const translations = {
     en: {
         "label-name": "Full Name <span class='required'>*</span>",
         "label-phone": "Phone Number <span class='required'>*</span>",
-        "label-email": "Email <span class='required'>*</span>",
+        "label-email": "Email",
         "button-send": "Send",
         "label-province": "Province <span class='required'>*</span>",
         "province-baghdad": "Baghdad",

@@ -14,11 +14,6 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s; 
-
-  padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
 }
 
 
@@ -30,52 +25,6 @@ body.dark-mode {
   --secondary-color: #69f0ae;
   --section-bg : #2f425d63;
 }
-
-@supports (display: flex) and (-webkit-touch-callout: none) {
-  @media screen and (device-aspect-ratio: 40/89) {
-      .section-wrapper {
-          padding-top: env(safe-area-inset-top);
-          padding-bottom: env(safe-area-inset-bottom);
-      }
-
-      .section-wrapper .image-box {
-          padding-inline-start: 5%; 
-      }
-
-      .section-wrapper .text-box {
-          width: 90%; 
-          text-align: center;
-          margin: 0 auto; 
-      }
-
-      .section-wrapper .text-box h1 {
-          width: 90%; 
-          font-size: 30px; 
-          margin: 20px auto;
-      }
-
-      .section-wrapper .text-box h2 {
-          font-size: 25px; 
-          line-height: 40px; 
-      }
-
-      .section-wrapper .text-box p {
-          font-size: 20px; 
-      }
-
-      .header {
-        width:100%;
-      }
-
-      .logo {
-        width: 50%; 
-      }
-
-  }
-}
-
-
-
 
 #theme-toggle {
   background: none;
@@ -287,6 +236,7 @@ form.form div.form-control input , .form-control select  {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  text-align: right;
 }
 
 button.primary-button#submit{
@@ -821,4 +771,31 @@ div.header {
 
   margin-top: 5px;
   
+}
+
+/* SKIP BUTTON */
+.button-container {
+  display: flex;
+  flex-direction: column;
+
+  button#skip-2 {
+    align-self: flex-start;
+    max-width: 300px;
+    background: transparent;
+    border: none;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #b8b1b1;
+    padding: 5px 10px; 
+  }
+
+  button#skip-2:hover {
+    color: #777474;
+    cursor: pointer;
+  }
+
+  /* .fa-arrow-right{
+    transform: scaleX(2); 
+    display: inline-block;
+  } */
 }

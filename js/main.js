@@ -7,15 +7,14 @@ const phoneInput = document.getElementById("phone");
 
 const emailInput = document.getElementById("email");
 const provinceInput = document.getElementById("province");
-
-// const internetProviderRadios = document.querySelectorAll('input[name="internet-provider"]');
-// const fiberCompanyInput = document.getElementById("fiber-company");
-
 const informationSourceRadios = document.querySelectorAll('input[name="informationSource"]');
 const currentInternetProviderInput = document.getElementById("currentInternetProvider");
 
 const formSuccessMessage = document.getElementById("form-success-message");
 const formSection = document.querySelector('.main-container'); 
+const skipButton = document.getElementById('skip-2'); 
+let isSubmitted = false;
+
 
 
 let sectionIdInput;
@@ -30,6 +29,9 @@ function validatePhone(phone) {
 }
 
 function validateEmail(email) {
+    if (!email) { 
+        return true; 
+    }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
@@ -38,16 +40,6 @@ function validateProvince(province) {
     return province !== "";
 }
 
-// function validateInternetProvider() {
-//     return document.querySelector('input[name="internet-provider"]:checked') !== null;
-// }
-
-// function validateFiberCompany(company) {
-//     if (document.getElementById('fiber').checked) {
-//         return company.trim() !== "";
-//     }
-//     return true; 
-// }
 
 function validateInformationSource() {
     return document.querySelector('input[name="informationSource"]:checked') !== null;
@@ -69,10 +61,8 @@ function updateButtonState() {
     const isInformationSourceValid = validateInformationSource();
     const isCurrentInternetProviderValid = validateCurrentInternetProvider(currentInternetProviderInput.value);
 
-    // const isInternetProviderValid = validateInternetProvider();
-    // const isFiberCompanyValid = validateFiberCompany(fiberCompanyInput.value);
 
-    if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInformationSourceValid && isCurrentInternetProviderValid ) {
+    if (isNameValid && isPhoneValid  && isProvinceValid &&  isInformationSourceValid && isCurrentInternetProviderValid  && isEmailValid ) {
         submitButton.disabled = false;
         submitButton.style.cursor = "pointer";
     } else {
@@ -174,28 +164,6 @@ informationSourceRadios.forEach(radio => {
     });
 });
 
-// informationSourceRadios.forEach(radio => {
-//     radio.addEventListener('change', () => {
-//         formSuccessMessage.innerText = "";
-//         if (!validateInternetProvider()) {
-//             showError(radio, "يجب اختيار مزود الإنترنت*");
-//         } else {
-//             clearError(radio);
-//         }
-//         updateButtonState();
-//     });
-// });
-
-// fiberCompanyInput.addEventListener("keyup", () => {
-//     formSuccessMessage.innerText = "";
-//     if (!validateFiberCompany(fiberCompanyInput.value)) {
-//         showError(fiberCompanyInput, "يجب إدخال اسم الشركة*");
-//     } else {
-//         clearError(fiberCompanyInput);
-//     }
-//     updateButtonState();
-// });
-
 currentInternetProviderInput.addEventListener("keyup", () => {
     formSuccessMessage.innerText = "";
     if (!validateCurrentInternetProvider(currentInternetProviderInput.value)) {
@@ -270,6 +238,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             formSection.style.display = "flex";
         });
     });
+
+    if (skipButton) {
+        skipButton.addEventListener('click', sendSkipRequest(isSubmitted));
+         }
 });
 
 submitButton.addEventListener("click", (e) => {
@@ -279,9 +251,6 @@ submitButton.addEventListener("click", (e) => {
     const isPhoneValid = validatePhone(phoneInput.value);
     const isEmailValid = validateEmail(emailInput.value);
     const isProvinceValid = validateProvince(provinceInput.value);
-    // const isInternetProviderValid = validateInternetProvider();
-    // const isFiberCompanyValid = validateFiberCompany(fiberCompanyInput.value);
-
     const isInformationSourceValid = validateInformationSource();
     const isCurrentInternetProviderValid = validateCurrentInternetProvider(currentInternetProviderInput.value);
 
@@ -305,7 +274,7 @@ submitButton.addEventListener("click", (e) => {
         showError(currentInternetProviderInput, translations[isArabic ? 'ar' : 'en']['error-company-required']);
     }
 
-    if (isNameValid && isPhoneValid && isEmailValid && isProvinceValid && isInformationSourceValid && isCurrentInternetProviderValid){
+    if (isNameValid && isPhoneValid  && isEmailValid && isProvinceValid && isInformationSourceValid && isCurrentInternetProviderValid){
         sendHttpRequest();
     } 
 });
@@ -356,8 +325,22 @@ function showErrorMessage(errorMessage = "حصل خطأ ما، يرجى المح
 }
 
 
+// Define the QR source Id
+function getQueryStringValue(url = window.location.href) {
+    const queryString = url.split("?")[1];
+    if (queryString) {
+        return decodeURIComponent(queryString.split("&")[0].replace(/\+/g, " "));
+    }
+    return null;
+}
+
+const idValue = getQueryStringValue() || "bf40549b-624a-4d44-aff3-3b4fc9b7edf3";
+
+
 
 function sendHttpRequest() {
+
+    let isSubmitted = true;
 
     const informationSource = document.querySelector('input[name="informationSource"]:checked')?.value || "";
 
@@ -367,7 +350,10 @@ function sendHttpRequest() {
         informationSource: informationSource,
         email: emailInput.value,
         governance: provinceInput.value,
-        currentInternetProvider: currentInternetProviderInput.value };
+        currentInternetProvider: currentInternetProviderInput.value,
+        "leadSource": idValue, 
+        "leadType": "8f3bd23c-d59f-4e04-bf13-92f303deb2b3"
+    };
 
     formSuccessMessage.innerText = "";
     fetch(`${baseUrl}/requests/service-availability`, {
@@ -384,6 +370,7 @@ function sendHttpRequest() {
     }).then((response) => {
         if (response?.ok) {
             showSuccessMessage();
+            sendSkipRequest(isSubmitted);
         } else {
             response.json().then(data => {
                 if (data.message) {
@@ -397,6 +384,33 @@ function sendHttpRequest() {
         }
     });
 }
+
+function sendSkipRequest(isSubmitted) {
+    const payload = {
+     isSubmitted:isSubmitted
+     };
+    
+     fetch(`${baseUrl}/requests/service-availability/skip`, {
+     method: "POST",
+     headers: { "Content-Type": "application/json",
+                "Accept-Language": isArabic ? "ar" : "en",
+                "X-AccountId": "",
+                "X-User-Role": "",
+                "X-Client-App": "",
+                "X-Client-Version": "",
+                "X-Client-Name": ""
+              },
+     body: JSON.stringify(payload),
+    }).then((response) => {
+    if (response?.ok) {
+     window.location.href = "/"; 
+    
+     console.log("Skip request successful");
+     } else {
+    console.error("Error sending skip request");
+    }
+     });
+    }
 
 /* ================================== 
             Translation 

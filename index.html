@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "qsp5dlnkli");
+</script>
   <link rel="stylesheet" href="./css/helpers.css">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="al-watani icon" href="./images/watani.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>الوطني من ايرثلنك</title>
 </head>
@@ -37,11 +43,16 @@
         <h2>احصل على انترنت من الشبكة <br> الاكبر في العراق
           مع خصومات <br> ومميزات حصرية</h2>
         <p>خليك واحد من عائلتنا .. خليك وطني</p>
-        <button class="primary-button" id="register-2" data-section="2" data-key="register-button"></button>
-
+        <!-- <button class="primary-button" id="register-2" data-section="2" data-key="register-button"></button> -->
+        <div class="button-container">
+          <button class="primary-button" id="register-2" data-section="2" data-key="register-button"></button>
+          <button class="skip-button" id="skip-2">
+              <!-- <i class="fa fa-arrow-right"></i> -->
+              تخطي
+          </button>
+       </div>
       </div>
     </div>
-   
   </div>
 
     <div class="main-container display-none visibility-hidden" id="form-section">
@@ -70,13 +81,30 @@
               <label for="province" data-key="label-province">المحافظة</label>
               <select name="province" id="province">
                 <option value="" data-key="choose-province">اختر محافظة</option>
+                <!-- PROD -->
+                <!-- <option value="43e71262-fd27-45a8-abb9-8ea9eb84ce53" data-key="province-anbar">الأنبار</option>
+                <option value="4c3d089a-cacc-4457-8e1a-f0a486d18918" data-key="province-babil">بابل</option>
+                <option value="3e1dccfb-d06b-405a-8f4f-9a861bab964d" data-key="province-baghdad">بغداد</option>
+                <option value="7039e26f-de13-4d6a-b1e5-d832d9185b11" data-key="province-basra">البصرة</option>
+                <option value="3d80f6e4-7515-4e8c-82cd-d059b2c9caf2" data-key="province-diyala">ديالى</option>
+                <option value="28e0f7ae-3e02-4e0c-8021-098be93615db" data-key="province-karbala">كربلاء</option>
+                <option value="793ffada-ed77-4348-8b93-812049d55df1" data-key="province-maysan">ميسان</option>
+                <option value="441cfa34-ed2c-4888-af57-f92b10fb95c0" data-key="province-muthanna">المثنى</option>
+                <option value="1f914b4c-ce6a-4bce-9b66-2d487d84ea25" data-key="province-najaf">النجف</option>
+                <option value="701afdd2-ad0b-4725-b0df-4bc9e4634088" data-key="province-nineveh">نينوى</option>
+                <option value="ddbe7bc1-b832-471f-a843-fff3d6b8b8b3" data-key="province-qadissiya">القادسية</option>
+                <option value="3b326c34-e65f-4831-be63-2114a640d5e8" data-key="province-salahuddin">صلاح الدين</option>
+                <option value="42a0e3ca-f8c8-4724-be09-12da6425fcc2" data-key="province-kirkuk">كركوك</option>
+                <option value="4a2f60f3-83ed-48da-ac22-675577194870" data-key="province-thiqar">ذي قار</option>
+                <option value="36852e9d-6f60-4ae1-ab91-d3f86a9ac116" data-key="province-wasit">واسط</option> -->
+                <!-- PROD -->
+
+                <!-- DEV -->
                 <option value="9fc7a47c-66b1-449a-b908-825cad04ee07" data-key="province-anbar">الأنبار</option>
-                <option value="280b0d49-ea60-4d3c-8e44-97a45b4e30f9" data-key="province-erbil">أربيل</option>
                 <option value="a56de306-acf8-49e8-a9b0-5663a436c9dd" data-key="province-babil">بابل</option>
                 <option value="df7bf63b-7630-4c94-9d07-cdeb7e212dae" data-key="province-baghdad">بغداد</option>
                 <option value="89ea59e9-ede2-4197-9cce-67afd8d1beb3" data-key="province-basra">البصرة</option>
                 <option value="cae2c0dd-8a10-4406-b200-c00dc38a8aff" data-key="province-diyala">ديالى</option>
-                <option value="57dea71e-da76-416a-9b8b-e827031c1db8" data-key="province-dhok">دهوك</option>
                 <option value="3634a726-0268-44ba-bfbd-e100299cb16b" data-key="province-karbala">كربلاء</option>
                 <option value="b914ca2e-a6b0-4f1f-b8f5-905a975d3ff1" data-key="province-maysan">ميسان</option>
                 <option value="b19a212b-f4ba-4dfc-9eea-a15b249cd209" data-key="province-muthanna">المثنى</option>
@@ -84,28 +112,25 @@
                 <option value="35086096-c1d6-4383-bc7b-845f196cbab8" data-key="province-nineveh">نينوى</option>
                 <option value="270c997f-33b5-4187-a8d9-d79ac7af0867" data-key="province-qadissiya">القادسية</option>
                 <option value="349acd4a-512b-4aed-877e-0bed2ab94bef" data-key="province-salahuddin">صلاح الدين</option>
-                <option value="ee0ea531-f0e5-45ad-b518-e1aea9169eed" data-key="province-sulaymaniyah">السليمانية</option>
                 <option value="e37e0df6-2f48-4b57-9320-db5a29e42b32" data-key="province-kirkuk">كركوك</option>
                 <option value="b1d41034-0d35-47e2-a6f9-dcd446b464f0" data-key="province-thiqar">ذي قار</option>
                 <option value="89ea59e9-ede2-4197-9cce-67afd8d1beb3" data-key="province-wasit">واسط</option>
+                <!-- DEV -->
             </select>
           </div>
           <div class="form-control">
             <label>ما هو مزود الانترنت الحالي لديك؟<span class="required">*</span></label>
             <div class="radio-group" id="goup1">
-                <!-- <input type="radio" id="wireless" name="internet-provider" value="wireless"> -->
                 <input type="radio" id="wireless" name="informationSource" value="d9172bc8-3eeb-4977-9bca-172d2a4e438f">
 
                 <label for="wireless">خدمة وايرلس</label>
             </div>
             <div class="radio-group">
-                <!-- <input type="radio" id="fiber" name="internet-provider" value="fiber"> -->
                 <input type="radio" id="fiber" name="informationSource" value="22160bc9-c68c-403a-a2f0-464b809132ae">
 
-                <label for="fiber">خدمة الكابل الضوئي في شركة:</label>
+                <label for="fiber">خدمة الكيبل الضوئي في شركة:</label>
             </div>
             <div id="fiber-company-container" style="display: block;">
-              <!-- <input type="text" id="fiber-company" name="fiber-company" placeholder="اسم الشركة" style="display: none;"> -->
               <input type="text" id="currentInternetProvider" name="currentInternetProvider" placeholder="اسم الشركة" style="display: none;">
 
           </div>
@@ -143,10 +168,8 @@
           <div class="line"><hr ></div>
           <p>شكرا لأختياركم الوطني للانترنت</p>
           <a class="home-link" href="/">العودة الى الصفحة الرئيسية</a>
-          
         </div>
       </div>
-     
     </div>
   </div>
 
